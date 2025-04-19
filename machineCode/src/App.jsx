@@ -1,16 +1,21 @@
-import React from 'react'
-import InfiniteScroll from './pages/InfiniteScroll'
-import CustomSwitchCase from './pages/CustomSwitchCase'
-import FeatureFlag from './pages/FeatureFlag'
-import Stepper from './pages/Stepper'
+import React from "react";
+import InfiniteScroll from "./pages/InfiniteScroll";
+import CustomSwitchCase from "./pages/CustomSwitchCase";
+import FeatureFlag from "./pages/FeatureFlag";
+import Stepper from "./pages/Stepper";
+import Board from "./pages/Board";
 
 function App() {
   return (
-  //  <InfiniteScroll/>
-  // <CustomSwitchCase/>
-  // <FeatureFlag/>
-  <Stepper/>
-  )
+    <div className="h-screen">
+      {/* <InfiniteScroll />
+      <CustomSwitchCase />
+       <FeatureFlag />
+       <Stepper /> */}
+     
+        <Board />
+      </div>
+  );
 }
 
-export default App
+export default App;
