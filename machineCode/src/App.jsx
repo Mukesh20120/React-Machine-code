@@ -5,6 +5,7 @@ import FeatureFlag from "./pages/FeatureFlag";
 import Stepper from "./pages/Stepper";
 import Board from "./pages/Board";
 import SearchAndAutoComplete from "./pages/SearchAndAutoComplete";
+import ProgressBar from "./pages/ProgressBar";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
        <FeatureFlag />
        <Stepper /> */}
       {/* <Board /> */}
-      <SearchAndAutoComplete/>
+      {/* <SearchAndAutoComplete/> */}
+      <ProgressBar/>
     </div>
   );
 }

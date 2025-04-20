@@ -5,3 +5,7 @@
 .hoverable:hover{
     background-color: yellow;
 }
+
+.animation{
+  transition: 0.5s ease-in;
+}
