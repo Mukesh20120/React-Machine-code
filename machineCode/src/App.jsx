@@ -4,6 +4,7 @@ import CustomSwitchCase from "./pages/CustomSwitchCase";
 import FeatureFlag from "./pages/FeatureFlag";
 import Stepper from "./pages/Stepper";
 import Board from "./pages/Board";
+import SearchAndAutoComplete from "./pages/SearchAndAutoComplete";
 
 function App() {
   return (
@@ -12,9 +13,9 @@ function App() {
       <CustomSwitchCase />
        <FeatureFlag />
        <Stepper /> */}
-     
-        <Board />
-      </div>
+      {/* <Board /> */}
+      <SearchAndAutoComplete/>
+    </div>
   );
 }
 

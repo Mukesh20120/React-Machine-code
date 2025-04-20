@@ -1,0 +1,7 @@
+.hoverable{
+    padding: 2px;
+    cursor: pointer;
+}
+.hoverable:hover{
+    background-color: yellow;
+}
