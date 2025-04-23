@@ -27,10 +27,10 @@ function CircleUI({ backgroundColor, top, left }) {
 }
 
 function CheckOverlap(circle1, circle2) {
-  const x1 = circle1.left + radius;
-  const y1 = circle1.top + radius;
-  const x2 = circle2.left + radius;
-  const y2 = circle2.top + radius;
+  const x1 = circle1.left;
+  const y1 = circle1.top;
+  const x2 = circle2.left;
+  const y2 = circle2.top;
 
   const dist = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
   return dist <= radius * 2;
@@ -40,13 +40,13 @@ function OverlapCircleDetection() {
   const [circles, setCircles] = useState([]);
 
   const handleMouseClick = (e) => {
-    const containerRect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - containerRect.left;
-    const clickY = e.clientY - containerRect.top;
+   
+    const clickX = e.clientX ;
+    const clickY = e.clientY;
 
     const newCircleCords = {
-      left: clickX - radius,
-      top: clickY - radius,
+      left: clickX-radius,
+      top: clickY-radius,
       backgroundColor: "red",
     };
 
@@ -63,8 +63,7 @@ function OverlapCircleDetection() {
 
   return (
     <div
-      className="h-screen w-screen"
-      style={{ position: "relative" }}
+      className="h-screen w-screen relative"
       onClick={handleMouseClick}
     >
       {circles.map((circle, index) => (
