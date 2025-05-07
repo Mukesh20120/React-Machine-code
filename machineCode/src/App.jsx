@@ -32,6 +32,8 @@ import UseClickOutsideComponent from "./hooks/UseClickOutside/UseClickOutsideCom
 import ClickOutsideComponent from "./hooks/UseClickOutside/UseClickOutsideComponent";
 import Magnifier from "./pages/Magnifier";
 import UseCopyClipboardComponent from "./hooks/UseCopyClipboard/UseCopyClipboardComponent";
+import CookieComponent from "./hooks/UseCookie/CookieComponent";
+import TranslateComponent from "./hooks/useTranslate/TranslateComponent";
 
 function App() {
   return (
@@ -65,8 +67,10 @@ function App() {
       {/* <MediaQueryComponent/> */}
       {/* <GeolocationComponent/> */}
       {/* <ClickOutsideComponent/> */}
-        {/* <Magnifier zoomMultiplier={10} lensDiameter={300} /> */}
-        <UseCopyClipboardComponent/>
+      {/* <Magnifier zoomMultiplier={10} lensDiameter={300} /> */}
+      {/* <UseCopyClipboardComponent/> */}
+      {/* <CookieComponent/> */}
+      <TranslateComponent />
     </div>
   );
 }
