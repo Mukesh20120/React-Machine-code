@@ -30,7 +30,7 @@ import MediaQueryComponent from "./hooks/UseMediaQuery/MediaQueryComponent";
 import GeolocationComponent from "./hooks/UseGeolocation/GeolocationComponent";
 import UseClickOutsideComponent from "./hooks/UseClickOutside/UseClickOutsideComponent";
 import ClickOutsideComponent from "./hooks/UseClickOutside/UseClickOutsideComponent";
-
+import Magnifier from "./pages/Magnifier";
 
 function App() {
   return (
@@ -63,7 +63,10 @@ function App() {
       {/* <SizeComponent/> */}
       {/* <MediaQueryComponent/> */}
       {/* <GeolocationComponent/> */}
-      <ClickOutsideComponent/>
+      {/* <ClickOutsideComponent/> */}
+      <div className=" flex justify-center items-center h-screen">
+        <Magnifier zoomMultiplier={10} lensDiameter={300} />
+      </div>
     </div>
   );
 }
