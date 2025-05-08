@@ -34,6 +34,11 @@ import Magnifier from "./pages/Magnifier";
 import UseCopyClipboardComponent from "./hooks/UseCopyClipboard/UseCopyClipboardComponent";
 import CookieComponent from "./hooks/UseCookie/CookieComponent";
 import TranslateComponent from "./hooks/useTranslate/TranslateComponent";
+import OnlineStatusComponent from "./hooks/UseOnlineStatus/OnlineStatusComponent";
+import RenderCountComponent from "./hooks/UseRenderCount/RenderCountComponent";
+import HoverComponent from "./hooks/UseHover/HoverComponent";
+import TimeoutComponent from "./hooks/UseTimeOut/TimeoutComponent";
+import LongPressComponent from "./hooks/UseLongPress/LongPressComponent";
 
 function App() {
   return (
@@ -70,7 +75,12 @@ function App() {
       {/* <Magnifier zoomMultiplier={10} lensDiameter={300} /> */}
       {/* <UseCopyClipboardComponent/> */}
       {/* <CookieComponent/> */}
-      <TranslateComponent />
+      {/* <TranslateComponent /> */}
+      {/* <OnlineStatusComponent/> */}
+      {/* <RenderCountComponent/> */}
+      {/* <HoverComponent/> */}
+      {/* <TimeoutComponent/> */}
+      <LongPressComponent/>
     </div>
   );
 }
