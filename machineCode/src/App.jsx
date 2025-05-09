@@ -39,6 +39,7 @@ import RenderCountComponent from "./hooks/UseRenderCount/RenderCountComponent";
 import HoverComponent from "./hooks/UseHover/HoverComponent";
 import TimeoutComponent from "./hooks/UseTimeOut/TimeoutComponent";
 import LongPressComponent from "./hooks/UseLongPress/LongPressComponent";
+import Connect4 from "./pages/Games/Connect4";
 
 function App() {
   return (
@@ -80,7 +81,8 @@ function App() {
       {/* <RenderCountComponent/> */}
       {/* <HoverComponent/> */}
       {/* <TimeoutComponent/> */}
-      <LongPressComponent/>
+      {/* <LongPressComponent/> */}
+      <Connect4/>
     </div>
   );
 }
