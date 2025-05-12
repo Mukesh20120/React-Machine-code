@@ -1,17 +1,14 @@
 import React, { useRef, useState } from "react";
 import smallImage from "../assets/small.jpg";
 import largeImage from "../assets/large.jpg";
+import small from "../assets/small.jpg";
+import large from "../assets/large.jpg";
 
 function Magnifier({zoomMultiplier=3,lensDiameter=100}) {
   const imageRef = useRef();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLensVisible, setIsLensVisible] = useState(false);
 
-  /**
-   * Handles mouse movement inside the image area
-   * Calculates mouse position relative to the image
-   * Clamps values so the lens doesn't go outside
-   */
   const handleMouseMove = (event) => {
     if (!imageRef.current) return;
 
@@ -66,3 +63,62 @@ function Magnifier({zoomMultiplier=3,lensDiameter=100}) {
 }
 
 export default Magnifier;
+
+
+
+export  function Maginifer2() {
+  const [show, setShow] = useState(false);
+  const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0 });
+  const imageRef = useRef();
+  const zoomfactor = 2;
+  const onMouseMove = (event) => {
+    if (!imageRef.current) return;
+    const { left, top, height, width } =
+      imageRef.current.getBoundingClientRect();
+    let x = event.clientX - left;
+    let y = event.clientY - top;
+
+    x = Math.max(0, Math.min(x, width));
+    y = Math.max(0, Math.min(y, height));
+    setMouseCoords({ x, y });
+  };
+  return (
+    <div
+      onMouseEnter={() => {
+        setShow(true);
+      }}
+      onMouseLeave={() => {
+        setShow(false);
+      }}
+      onMouseMove={onMouseMove}
+      style={{
+        backgroundColor: "yellow",
+        display: "inline-block",
+        position: "relative",
+      }}
+    >
+      <img ref={imageRef} src={small} />
+      {show && (
+        <div
+          style={{
+            position: "absolute",
+            top: mouseCoords.y - 50,
+            left: mouseCoords.x - 50,
+            height: "100px",
+            width: "100px",
+            borderRadius: "50%",
+            backgroundImage: `url(${large})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: `${imageRef.current.clientWidth * zoomfactor}px ${
+              imageRef.current.clientHeight * zoomfactor
+            }px`,
+            backgroundPosition: `-${Math.max(
+              0,
+              mouseCoords.x * zoomfactor - 50
+            )}px -${Math.max(0, mouseCoords.y * zoomfactor - 50)}px`,
+          }}
+        />
+      )}
+    </div>
+  );
+}
