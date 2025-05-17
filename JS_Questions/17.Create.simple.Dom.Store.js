@@ -1,67 +1,142 @@
+//using es6 feature weakmap
 class NodeStore {
-    /**
-    * @param {Node} node
-    * @param {any} value
-    */
-   constructor(){
-     this.hash = {};
-   }
-   set(node, value) {
-    let key = JSON.stringify(node);
-    this.hash[key] = value;
-   }
-   /**
-    * @param {Node} node
-    * @return {any}
-    */
-   get(node) {
-     let key = JSON.stringify(node);
-    return this.hash[key];
-   }
-   
-   /**
-    * @param {Node} node
-    * @return {Boolean}
-    */
-   has(node) {
-      let key = JSON.stringify(node);
-     return this.hash.hasOwnProperty(key);
-   }
- }
- //the problem with this solution is the json.stringfy converting all the data into string taking a lot of time
+  /**
+  * @param {Node} node
+  * @param {any} value
+  */
+  constructor() {
+    this.hash = new WeakMap(); //key->obj value
+  }
+  set(node, value) {
+    this.hash.set(node,value);
+  }
+  /**
+   * @param {Node} node
+   * @return {any}
+   */
+  get(node) {
+   return this.hash.get(node);
+  }
 
+  /**
+   * @param {Node} node
+   * @return {Boolean}
+   */
+  has(node) {
+   return this.hash.has(node);
+  }
+}
+//solution 3 using symbol
+// class NodeStore {
+//   /**
+//   * @param {Node} node
+//   * @param {any} value
+//   */
+//   constructor() {
+//     this.hash = {}; //key ,value
+//   }
+//   set(node, value) {
+//    if(!node.cstmId){
+//      node.cstmId = Symbol();
+//    }
+//    this.hash[node.cstmId]=value;
+//   }
+//   /**
+//    * @param {Node} node
+//    * @return {any}
+//    */
+//   get(node) {
+//     if(!node.cstmId)return undefined;
+//   return this.hash[node.cstmId];
+//   }
 
- 
-//how below solution work as javascript pass the object by reference we can create our own
-//it _nsid node store id and store a unique value in it and hash
-class NodeStore {
-    /**
-    * @param {Node} node
-    * @param {any} value
-    */
-   constructor(){
-     this.hash = {};
-     this.id = 0;
-   }
-   set(node, value) {
-    if(!node._nsid){
-      node._nsid = ++this.id;
-    }
-    this.hash[node._nsid] = value;
-   }
-   /**
-    * @param {Node} node
-    * @return {any}
-    */
-   get(node) {
-     return node._nsid?this.hash[node._nsid]:undefined;
-   }
-   
-   /**
-    * @param {Node} node
-    * @return {Boolean}
-    */
-   has(node) {
-     return node._nsid?true:false;
-   }
- }
+//   /**
+//    * @param {Node} node
+//    * @return {Boolean}
+//    */
+//   has(node) {
+//    return node.cstmId?true:false;
+//   }
+// }
+//solution 2 using cstmId modify given node
+// class NodeStore {
+//   /**
+//   * @param {Node} node
+//   * @param {any} value
+//   */
+//   constructor() {
+//     this.hash = {}; //key ,value
+//     this.id = 0;
+//   }
+//   set(node, value) {
+//    if(!node.cstmId){
+//      node.cstmId = ++this.id;
+//    }
+//    this.hash[node.cstmId]=value;
+//   }
+//   /**
+//    * @param {Node} node
+//    * @return {any}
+//    */
+//   get(node) {
+//     if(!node.cstmId)return undefined;
+//   return this.hash[node.cstmId];
+//   }
+
+//   /**
+//    * @param {Node} node
+//    * @return {Boolean}
+//    */
+//   has(node) {
+//    return node.cstmId?true:false;
+//   }
+// }
+
+//solution 1 store object in array
+// class NodeStore {
+//   /**
+//   * @param {Node} node
+//   * @param {any} value
+//   */
+//   // array = [{node,value},{node1,value2}]
+//   // -> O(n)
+//   // -> O(n)
+//   //->has O(n)
+//   constructor() {
+//     this.array = [];
+//   }
+//   set(node, value) {
+//     for (let i = 0; i < this.array.length; i++) {
+//       if (this.array[i].node === node) {
+//         this.array[i].value = value;
+//         return;
+//       }
+//     }
+//     this.array.push({ node, value });
+//   }
+//   /**
+//    * @param {Node} node
+//    * @return {any}
+//    */
+//   get(node) {
+//     for (let i = 0; i < this.array.length; i++) {
+//       if (this.array[i].node === node) {
+//         return this.array[i].value;
+//       }
+//     }
+//     return undefined;
+//   }
+
+//   /**
+//    * @param {Node} node
+//    * @return {Boolean}
+//    */
+//   has(node) {
+//     for (let i = 0; i < this.array.length; i++) {
+//       if (this.array[i].node === node) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
+// }

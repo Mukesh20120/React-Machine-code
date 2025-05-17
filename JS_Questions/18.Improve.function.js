@@ -1,10 +1,13 @@
+
 function excludeItems(items, excludes) {
-    const map = new Map();
-    excludes.forEach(({k,v})=>{
-      if(!map[k])
-         map[k]= new Set();
-     map[k].add(v);
-    })
-  itemsKeys =items.length>0? Object.keys(items[0]) :[];
-return items.filter(item => !itemsKeys.some(key=>map[key] && map[key].has(item[key])))
+  if(items.length === 0)return [];
+  const map = new Map();
+  excludes.forEach(({k,v})=>{
+    if(!map.has(k)){
+      map.set(k,new Set());
+    }
+    map.get(k).add(v);
+  })
+  const itemKeys = Object.keys(items[0]) || [];
+ return  items.filter(item => !itemKeys.some(key=>map.has(key) && map.get(key).has(item[key])));
 }
