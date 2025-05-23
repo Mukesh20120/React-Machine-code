@@ -1,26 +1,29 @@
 
-/**
- * @param {any} target
- * @param {any[]} sources
- * @return {object}
- */
-function objectAssign(target, ...sources) {
-    if(target===null || target === undefined)
-      throw new Error('cannot assign into the null or undefined');
-    if (typeof target != 'object')
-      target = Object(target);
+// [{}, { a: 1, b: 2 }],
+// [{ x: 10 }, { a: 1, b: 2 }],
+// [{}, { a: 1 }, { b: 2 }, { c: 3 }],
+  // [42, { a: 1 }]
+  // [{ a: 1 }, null, undefined]
+
+  //  const sym = Symbol('id');
+  // const source = {
+  //   name: 'John',
+  //   [sym]: 123
+  // };
+  // const target = {};
+
+
+  function objectAssign(target, ...sources) {
+    if(target === null || target === undefined)throw new Error('Invalid target')
+    target = Object(target);
     for (let source of sources) {
       if(source === null || source === undefined)continue;
-      const keys = [
-        ...Object.keys(source),
-        ...Object.getOwnPropertySymbols(source).filter(skey => Object.getOwnPropertyDescriptor(source, skey).enumerable)
-      ];
-  
-      for (let key of keys) {
-        if (!Reflect.set(target, key, source[key])) {
-          throw new Error('cannot assign');
+      for (let key of [...Object.keys(source), ...Object.getOwnPropertySymbols(source)]) {
+        target[key] = source[key];
+        if(target[key] !== source[key]){
+          throw new Error('Cannot copy');
         }
       }
     }
-    return target
+    return target;
   }
