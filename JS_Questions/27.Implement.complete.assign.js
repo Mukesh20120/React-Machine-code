@@ -17,3 +17,16 @@ function completeAssign(target, ...sources) {
     }
   return target;
   }
+
+
+//   Every property you add to an object isn’t just a value — it also has some extra metadata:
+
+// Is it writable (can you change it?)
+
+// Is it enumerable (does it show up in for..in or Object.keys?)
+
+// Is it configurable (can you delete or change its flags?)
+
+// Is it a value property or a getter/setter?
+
+// We call this extra info a property descriptor.

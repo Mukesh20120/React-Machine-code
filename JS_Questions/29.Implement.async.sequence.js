@@ -54,3 +54,21 @@ function sequence(funcs){
        curFun(cb,data);
      }
    }
+
+
+
+   function sequence(funcs) {
+  return function (callback, data) {
+    let i = 0;
+
+    function next(err, result) {
+      if (err || i === funcs.length) {
+        callback(err, result);
+        return;
+      }
+      funcs[i++](next, result);
+    }
+
+    next(undefined, data);
+  };
+}
